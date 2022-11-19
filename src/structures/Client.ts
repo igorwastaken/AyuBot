@@ -12,13 +12,15 @@ export class ExtendedClient extends Client {
       ...options,
       intents: [Intent.Guilds],
       partials: [],
+      failIfNotExists: true,
       allowedMentions: { repliedUser: false }
     })
+    
     this.run()
   }
   private async run() {
     await this.registerModules();
-    await super.login().then(() => {
+    await super.login(process.env.DISCORD_TOKEN).then(() => {
       this.handlerErrors()
     })
   }
