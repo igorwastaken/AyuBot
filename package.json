@@ -1,0 +1,29 @@
+{
+  "name": "ayubot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "start": "ts-node src/index.ts",
+    "start:prod": "node dist/index.js",
+    "register": "ts-node scripts/register.ts",
+    "format": "prettier --config .prettierrc.yml 'src' 'scripts' --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.6.0",
+    "dotenv": "^16.0.3",
+    "interactions": "^0.0.1",
+    "structures": "^0.1.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1"
+  }
+}
