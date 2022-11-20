@@ -1,4 +1,4 @@
-import { interactions } from '@interactions/main';
+import { interactions } from '../../interactions/main';
 import { Command } from '../../structures/Command';
 import { client } from '../../'
 

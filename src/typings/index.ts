@@ -29,7 +29,7 @@ export interface excuteOptions {
 
 type excuteFunction = (options: excuteOptions) => any;
 
-type commandDirectories = 'utility';
+type commandDirectories = 'info' | 'mod' | 'utility';
 
 export type interactionOptions = {
 	name: string;

@@ -79,5 +79,5 @@ export class ExtendedClient extends Client {
 		process.on('exit', () => {
 			this.destroy();
 		});
-                }
+  }
 }

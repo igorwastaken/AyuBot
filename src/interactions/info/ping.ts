@@ -4,7 +4,7 @@ import { interactionOptions } from '../../typings';
 export const pingCommand = {
 	name: 'ping',
 	description: 'pong.',
-	directory: 'utility',
+	directory: 'info',
 	cooldown: 1000,
 	permission: []
 } as interactionOptions;
