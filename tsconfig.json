@@ -1,33 +1,38 @@
 {
-	"compilerOptions": {
-		// Typings
-		"allowUnreachableCode": false,
-		"allowUnusedLabels": false,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitOverride": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-
-		// Modules
-		"lib": ["ESNext"],
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"target": "ESNext",
-
-		// Emit
-		"outDir": "dist",
-		"sourceMap": false,
-		"esModuleInterop": true,
-		"experimentalDecorators": true,
-		"emitDecoratorMetadata": true,
-		"allowSyntheticDefaultImports": true,
-		"removeComments": false,
-		"forceConsistentCasingInFileNames": true,
-		"skipLibCheck": true,
-		"skipDefaultLibCheck": true,
-		"resolveJsonModule": true,
-		"importHelpers": true,
-	},
-	"include": ["src", "environment.d.ts"],
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+      "target": "ESNext",
+      "module": "CommonJS",
+      "rootDir": "./src/",
+      "outDir": "./dist/",
+      "strict": true,
+      "moduleResolution": "Node",
+      "importHelpers": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true,
+      "forceConsistentCasingInFileNames": true,
+      "removeComments": true,
+      "typeRoots": [
+        "node_modules/@types",
+        "src/typings"
+      ],
+      "sourceMap": false,
+      "baseUrl": ".",
+      "paths": {
+        "@typings/*": ["src/typings/*"],
+        "@utils/*": ["src/utils/*"],
+        "@structures/*": ["src/structures/*"],
+        "@interactions/*": ["src/interactions/*"]
+      }
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
 }

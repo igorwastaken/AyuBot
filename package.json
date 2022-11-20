@@ -17,9 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^14.6.0",
-    "dotenv": "^16.0.3",
-    "interactions": "^0.0.1",
-    "structures": "^0.1.3"
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "prettier": "^2.7.1",
