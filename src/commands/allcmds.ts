@@ -17,10 +17,10 @@ export class AllCommands {
 
     const pages = commands.map((cmd, i) => {
       const embed = new EmbedBuilder()
-        .setFooter({ text: `Page ${i + 1} of ${commands.length}` })
-        .setTitle("**Slash command info**")
-        .addFields({ name: "Name", value: cmd.name })
-        .addFields({ name: "Description", value: cmd.description });
+        .setFooter({ text: `Página ${i + 1} de ${commands.length}` })
+        .setTitle("**Informações dos comandos**")
+        .addFields({ name: "Nome", value: cmd.name })
+        .addFields({ name: "Descrição", value: cmd.description });
 
       return { embeds: [embed] };
     });
