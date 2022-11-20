@@ -1,10 +1,13 @@
-import { interactions } from '../../interactions/main';
-import { Command } from '../../structures/Command';
-import { client } from '../../'
+import { Discord, MetadataStorage, Slash } from "discordx";
+import { CommandInteraction } from 'discord.js'
 
-export default new Command({
-	interaction: interactions.ping,
-	excute: async ({ interaction }) => {
-		await interaction?.reply({ content: `Pong! \`${client.ws?.ping}ms\`` });
-	},
-});
+@Discord()
+export class PingCommand {
+  @Slash({
+    name: "ping",
+    description: "pong."
+  })
+  async ping(interaction: CommandInteraction): Promise<void> {
+    interaction?.reply("pong!")
+  }
+}
