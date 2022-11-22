@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "@discordx/importer": "^1.1.10",
+    "@discordx/koa": "^1.1.2",
     "@discordx/pagination": "^3.3.1",
+    "@types/koa": "^2.13.5",
     "discord.js": "^14.6.0",
     "discordx": "^11.4.0"
   },

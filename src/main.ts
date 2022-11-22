@@ -2,6 +2,7 @@ import { dirname, importx } from "@discordx/importer";
 import type { Interaction, Message } from "discord.js";
 import { IntentsBitField } from "discord.js";
 import { Client } from "discordx";
+import { Koa } from "@discordx/koa";
 
 export const bot = new Client({
   intents: [
@@ -27,7 +28,7 @@ bot.on("messageCreate", (message: Message) => {
 });
 
 async function run() {
-  await importx(`${dirname(import.meta.url)}/{events,commands}/**/*.{ts,js}`);
+  await importx(`${dirname(import.meta.url)}/{events,commands,api}/**/*.{ts,js}`);
 
   
   if (!process.env.BOT_TOKEN) {
@@ -35,6 +36,18 @@ async function run() {
   }
   
   await bot.login(process.env.BOT_TOKEN);
+
+  const server = new Koa();
+
+  // api: need to build the api server first
+  await server.build();
+
+  // api: let's start the server now
+  const port = process.env.PORT ?? 3000;
+  server.listen(port, () => {
+    console.log(`discord api server started on ${port}`);
+    console.log(`visit localhost:${port}/guilds`);
+  });
 }
 
 run();
