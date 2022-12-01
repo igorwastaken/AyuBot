@@ -5,14 +5,22 @@
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
 
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "src",
+    "paths": {
+      "ayubot/structures/*": ["structures/*"]
+    }
+  },
+  "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node"
   },
   "exclude": ["dist", "node_modules"]
 }

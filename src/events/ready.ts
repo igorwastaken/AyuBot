@@ -5,6 +5,6 @@ import { Discord, On } from "discordx";
 export class Example {
   @On()
   ready([message]: ArgsOf<"ready">, client: Client): void {
-    console.log("Bot online")
+   console.log("[Bot] online")
   }
 }

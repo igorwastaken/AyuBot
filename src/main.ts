@@ -1,25 +1,40 @@
 import { dirname, importx } from "@discordx/importer";
-import type { Interaction, Message } from "discord.js";
-import { IntentsBitField } from "discord.js";
+import type { CommandInteraction, Interaction, Message } from "discord.js";
+import { IntentsBitField, Partials } from "discord.js";
 import { Client } from "discordx";
 import { Koa } from "@discordx/koa";
-
+import sql from './structures/database'
 export const bot = new Client({
+  partials: [Partials.Channel, Partials.Message],
   intents: [
     IntentsBitField.Flags.Guilds,
     IntentsBitField.Flags.GuildMembers,
     IntentsBitField.Flags.GuildMessages,
+    IntentsBitField.Flags.MessageContent,
     IntentsBitField.Flags.GuildMessageReactions,
+    IntentsBitField.Flags.GuildPresences,
     IntentsBitField.Flags.GuildVoiceStates,
   ],
   silent: true,
+  simpleCommand: { prefix: "ay." }
 });
 
 bot.once("ready", async () => {
   await bot.initApplicationCommands();
 });
-
-bot.on("interactionCreate", (interaction: Interaction) => {
+bot.on("interactionCreate", async(interaction: any) => {
+  const data = await sql`
+   SELECT * FROM guilds
+   WHERE id = ${interaction.guild.id}
+  `
+  if(!data[0]) {
+    const insertData = await sql`
+     INSERT INTO guilds ( id ) VALUES ( ${interaction.guild.id} )
+    `
+    console.log(data)
+  }
+});
+bot.on("interactionCreate", async(interaction: Interaction) => {
   bot.executeInteraction(interaction);
 });
 
