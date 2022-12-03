@@ -21,6 +21,9 @@ export const bot = new Client({
 
 bot.once("ready", async () => {
   await bot.initApplicationCommands();
+  setInterval(() => {
+    bot.user?.setActivity({name: `${bot.guilds.cache.size} Servers | ${bot.users.cache.size} Users | v1.beta`})
+  }, 30000)
 });
 bot.on("interactionCreate", async(interaction: any) => {
   const data = await sql`

@@ -1,0 +1,36 @@
+[{
+  "embeds": [{
+    "title": "[🙆] Sobre Ayu",
+    "description": "Ayu é mais um bot para Discord, criado por uma equipe de 3 pessoas em 2020. Até hoje o bot mantém ativo (:",
+    "fields": [{
+      "name": "[ℹ️] Versão",
+      "value": "Versão de Ayu: v1.beta\nPackages (npm): Discordx, Discord.js, outros 5...\n[Github](https://github.com/apenasigordev/AyuBot)",
+      "inline": true
+    }, {
+      "name": "[📊] Estatisticas",
+      "value": "{#bot.guilds} Servidores\n{#bot.users} Usuários", 
+      "inline": true
+    }, {
+      "name": "[💻] Servidores",
+      "value": "[Servidor de suporte](https://discord.gg/yVjCEyAxZM)", 
+      "inline": true
+    }]
+  }]
+}, {
+  "embeds": [{
+    "title": "[💁] Contribuidores",
+    "fields": [{
+      "name": "Igor (apenasigordev)",
+      "value": "👑 Fundador da Ayu\n👨‍💻 Programador chefe\n[Github](https://github.com/apenasigordev)",
+      "inline": true
+    }, {
+      "name": "Snow (Doesnoow)",
+      "value": "👑 Sub-Fundador da Ayu\n👨‍💻 Programador e contribuidor\n[Github](https://github.com/Doesnoow)",
+      "inline": true
+    }, {
+      "name": "vitor_xp (vitorxcp)",
+      "value": "👑 Sub-Fundador da Ayu\n👨‍💻 Programador e contribuidor\n[Github](https://github.com/vitorxcp)",
+      "inline": true
+    }]
+  }]
+}]

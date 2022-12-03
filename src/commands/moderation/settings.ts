@@ -37,7 +37,8 @@ import sql from '../../structures/database'
 @Discord()
 @SlashGroup({
     description: "Change some server settings",
-    name: "settings"
+    name: "settings",
+    defaultMemberPermissions: PermissionFlagsBits.ManageGuild
 })
 @SlashGroup("settings")
 class SettingsCommand {
@@ -105,6 +106,7 @@ class SettingsCommand {
         id: "welcomechannel"
     })
     async channel(interaction: ButtonInteraction) {
+      // await interaction.deferReply()
         const guild = interaction?.guild as Guild;
         const data = await sql`
 
@@ -158,9 +160,8 @@ class SettingsCommand {
      UPDATE guilds SET welcomechannel = ${channel} WHERE id = ${guild.id}
 
     `
-        interaction.reply({
+        interaction.editReply({
             content: `Canal alterado para: <#${channel}>`,
-            flags: MessageFlags.Ephemeral,
             components: []
         })
     }
@@ -192,7 +193,7 @@ class SettingsCommand {
             inline: true
         }, {
             name: "Texto de boas-vindas",
-            value: `${data[0].welcometext.toString()??"Parece que não há nenhum texto de boas-vindas"}`,
+            value: `\`\`\`json\n${data[0].welcometext.toString()??"Parece que não há nenhum texto de boas-vindas"}\`\`\``,
             inline: true
         }, {
             name: "Canal de boas-vindas",
