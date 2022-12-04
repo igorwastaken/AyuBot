@@ -34,6 +34,13 @@ import type {
     Client
 } from 'discordx'
 import sql from '../../structures/database'
+
+const active = new ButtonBuilder().setEmoji("🟢").setStyle(ButtonStyle.Secondary).setLabel("Ativar ou Desativar").setCustomId("active")
+        const btn = new ButtonBuilder().setEmoji("✏️").setStyle(ButtonStyle.Primary).setCustomId("welcomeedit");
+        const test = new ButtonBuilder().setEmoji("💡").setLabel("Testar").setStyle(ButtonStyle.Primary).setCustomId("welcometest")
+        const channel = new ButtonBuilder().setEmoji("✏️").setLabel("Selecionar canal").setStyle(ButtonStyle.Primary).setCustomId("welcomechannel")
+        const buttonRow = new ActionRowBuilder < MessageActionRowComponentBuilder > ().addComponents(active, btn, channel, test);
+
 @Discord()
 @SlashGroup({
     description: "Change some server settings",
@@ -102,6 +109,27 @@ class SettingsCommand {
             flags: MessageFlags.Ephemeral
         })
     }
+    @ButtonComponent({ id: "active" })
+    async active(interaction: ButtonInteraction) {
+      const guild = interaction?.guild as Guild;
+      const data = await sql`
+
+     SELECT * FROM guilds
+
+     WHERE id = ${guild.id}
+
+    `
+      if(!data[0]) return;
+
+      const check = data[0].welcome !== true;
+
+      await sql`
+
+     UPDATE guilds SET welcome = ${check} WHERE id = ${guild.id}
+
+    `
+      interaction.editReply({ content: `[🚪] A chamada de Boas-vindas foi ${check?"Ativado":"Desativado"}` })
+    }
     @ButtonComponent({
         id: "welcomechannel"
     })
@@ -119,6 +147,8 @@ class SettingsCommand {
             content: "Ocorreu um erro, tente novamente.",
             flags: MessageFlags.Ephemeral
         });
+
+ 
         const channels = guild.channels.cache.filter((c: GuildBasedChannel) => (c.type === ChannelType.GuildText)).map(c => {
             return {
                 default: c.id === data[0].welcomechannel,
@@ -183,10 +213,8 @@ class SettingsCommand {
             content: "Ocorreu um erro, tente novamente.",
             flags: MessageFlags.Ephemeral
         });
-        const btn = new ButtonBuilder().setEmoji("✏️").setStyle(ButtonStyle.Primary).setCustomId("welcomeedit");
-        const test = new ButtonBuilder().setEmoji("💡").setLabel("Testar").setStyle(ButtonStyle.Primary).setCustomId("welcometest")
-        const channel = new ButtonBuilder().setEmoji("✏️").setLabel("Selecionar canal").setStyle(ButtonStyle.Primary).setCustomId("welcomechannel")
-        const buttonRow = new ActionRowBuilder < MessageActionRowComponentBuilder > ().addComponents(btn, test, channel);
+
+        
         const embed = new EmbedBuilder().setTitle("Configurações do servidor").addFields([{
             name: "Boas-vindas",
             value: `${data[0].welcome?"Ativado":"Desativado"}`,

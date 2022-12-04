@@ -1,8 +1,10 @@
 import { dirname, importx } from "@discordx/importer";
 import type { CommandInteraction, Interaction, Message } from "discord.js";
 import { IntentsBitField, Partials } from "discord.js";
+import * as dotenv from 'dotenv'
+dotenv.config();
 import { Client } from "discordx";
-import { Koa } from "@discordx/koa";
+
 import sql from './structures/database'
 export const bot = new Client({
   partials: [Partials.Channel, Partials.Message],
@@ -46,7 +48,7 @@ bot.on("messageCreate", (message: Message) => {
 });
 
 async function run() {
-  await importx(`${dirname(import.meta.url)}/{events,commands,api}/**/*.{ts,js}`);
+  await importx(`${dirname(import.meta.url)}/{events,commands}/**/*.{ts,js}`);
 
   
   if (!process.env.BOT_TOKEN) {
@@ -54,18 +56,6 @@ async function run() {
   }
   
   await bot.login(process.env.BOT_TOKEN);
-
-  const server = new Koa();
-
-  // api: need to build the api server first
-  await server.build();
-
-  // api: let's start the server now
-  const port = process.env.PORT ?? 3000;
-  server.listen(port, () => {
-    console.log(`discord api server started on ${port}`);
-    console.log(`visit localhost:${port}/guilds`);
-  });
 }
 
 run();
