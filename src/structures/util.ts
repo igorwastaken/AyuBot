@@ -1,6 +1,7 @@
 import type { GuildMember } from 'discord.js'
+
 export default {
-   welcome(text: string, member: GuildMember) {
+  welcome(text: string, member: GuildMember) {
      const stringjson = text
       .replace(/{#user.mention}/g, `<@!${member.user.id}>`)
        .replace(/{#user.username}/g, `${member.user.username}`)

@@ -35,11 +35,6 @@ import type {
 } from 'discordx'
 import sql from '../../structures/database'
 
-const active = new ButtonBuilder().setEmoji("🟢").setStyle(ButtonStyle.Secondary).setLabel("Ativar ou Desativar").setCustomId("active")
-        const btn = new ButtonBuilder().setEmoji("✏️").setStyle(ButtonStyle.Primary).setCustomId("welcomeedit");
-        const test = new ButtonBuilder().setEmoji("💡").setLabel("Testar").setStyle(ButtonStyle.Primary).setCustomId("welcometest")
-        const channel = new ButtonBuilder().setEmoji("✏️").setLabel("Selecionar canal").setStyle(ButtonStyle.Primary).setCustomId("welcomechannel")
-        const buttonRow = new ActionRowBuilder < MessageActionRowComponentBuilder > ().addComponents(active, btn, channel, test);
 
 @Discord()
 @SlashGroup({
@@ -128,7 +123,7 @@ class SettingsCommand {
      UPDATE guilds SET welcome = ${check} WHERE id = ${guild.id}
 
     `
-      interaction.editReply({ content: `[🚪] A chamada de Boas-vindas foi ${check?"Ativado":"Desativado"}` })
+      interaction.reply({ content: `[🚪] A chamada de Boas-vindas foi ${check?"Ativado":"Desativado"}` })
     }
     @ButtonComponent({
         id: "welcomechannel"
@@ -213,6 +208,11 @@ class SettingsCommand {
             content: "Ocorreu um erro, tente novamente.",
             flags: MessageFlags.Ephemeral
         });
+        const active = new ButtonBuilder().setEmoji("🟢").setStyle(ButtonStyle.Secondary).setLabel("Ativar ou Desativar").setCustomId("active")
+        const btn = new ButtonBuilder().setEmoji("✏️").setStyle(ButtonStyle.Primary).setCustomId("welcomeedit");
+        const test = new ButtonBuilder().setEmoji("💡").setLabel("Testar").setStyle(ButtonStyle.Primary).setCustomId("welcometest")
+        const channel = new ButtonBuilder().setEmoji("✏️").setLabel("Selecionar canal").setStyle(ButtonStyle.Primary).setCustomId("welcomechannel")
+        const buttonRow = new ActionRowBuilder < MessageActionRowComponentBuilder > ().addComponents(active, btn, channel, test);
 
         
         const embed = new EmbedBuilder().setTitle("Configurações do servidor").addFields([{

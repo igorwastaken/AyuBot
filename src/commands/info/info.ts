@@ -8,7 +8,7 @@ import { Pagination } from "@discordx/pagination";
 
 
 function badges(member: any) {
-  var badges = []
+  const badges = [];
   const badge = member?.user.flags.toArray()
   if(member.user.bot) badges.push("<:application:1045500026551537815>");
   if(member.user.system) badges.push("👨‍💻");
@@ -27,6 +27,7 @@ function badges(member: any) {
 function epoch(time: any, type: string) {
   return `<t:${Math.floor(time/1000)}:${type}>`;
 }
+
 
 @Discord()
 @SlashGroup({ description: 'Informações', name: "info" })
