@@ -43,14 +43,18 @@ bot.on("interactionCreate", async(interaction: any) => {
 });
 bot.on("interactionCreate", async(interaction: Interaction) => {
   try {
-    bot.executeInteraction(interaction);
+    await bot.executeInteraction(interaction);
   } catch(e) {
     console.log(e)
   }
 });
 
-bot.on("messageCreate", (message: Message) => {
-  bot.executeCommand(message);
+bot.on("messageCreate", async(message: Message) => {
+ try {
+  await bot.executeCommand(message);
+ } catch(e) {
+   console.log(e)
+ }
 });
 
 async function run() {
